@@ -121,19 +121,22 @@ width: 10%;
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 80%;
+    width: 70%;
     min-height: 100vh;
 }
 .divListe{
    height: 100px;
    width:200px;
-   border-radius: 50px;
-   border: 2px solid white;
-   display: flex;
+    display: flex;
    align-items: center;
    justify-content: center;
    flex-direction: column;
    margin: 20px;
+   background-image: url(./images/Group\ 2.png);
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center;
+   
 }
 .divListe:hover{
     cursor: pointer;
@@ -142,19 +145,46 @@ width: 10%;
     color: white;
     font-family: 'Space Mono', monospace;
     font-size:20px;
+    text-transform: uppercase;
 }
 .btnRetour{
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    font-size: 20px;
+    bottom: 40px;
+    right: 40px;
+    font-size: 15px;
     color: white;
+    background-image: url(./images/Group\ 3.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Mono', monospace;
+}
+.btnRetour:hover{
+    cursor: pointer;
 }
 .btnPlanet{
     position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     bottom: 10px;
-    right: 10px;
-    font-size: 20px;
+    right: 40px;
+    font-size: 15px;
+    width: 150px;
+    height: 150px;
     color: white;
+    background-image: url(./images/Group\ 2.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
 }
 

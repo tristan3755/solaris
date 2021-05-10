@@ -12,7 +12,7 @@ function reqPrincipale() {
         nomAstre.innerHTML = data.bodies[i].id;
         let btnPlanet = document.createElement("p");
         btnPlanet.classList = "btnPlanet";
-        btnPlanet.innerHTML = "Afficher que les planetes";
+        btnPlanet.innerHTML = "Afficher uniquement les planetes";
 
         btnPlanet.addEventListener("click", () => {
           triPLanete();
