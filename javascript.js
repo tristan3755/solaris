@@ -35,6 +35,7 @@ function reqPrincipale() {
               maDiv.classList = "divListe";
               nomAstre = document.createElement("p");
               nomAstre.innerHTML = data.bodies[i].id;
+
               maDiv.appendChild(nomAstre);
 
               let btnRetour = document.createElement("p");
@@ -100,6 +101,19 @@ function reqPrincipale() {
               monTitre.innerHTML = data.name;
               monTitre.style.color = "white";
 
+              let monTitreAnglais = document.createElement("h2");
+              monTitreAnglais.innerHTML = data.englishName;
+              monTitreAnglais.style.color = "white";
+
+              let inclinaison= document.createElement("p");
+              inclinaison.innerHTML = data.inclination;
+              inclinaison.style.color = "white";
+
+              let mass= document.createElement("p");
+              mass.innerHTML = data.mass['massValue']
+              mass.style.color = "white";
+              
+
               let btnRetour = document.createElement("p");
               btnRetour.classList = "btnRetour";
               btnRetour.innerHTML = "retour";
@@ -111,6 +125,10 @@ function reqPrincipale() {
 
               document.getElementById("apiGet").appendChild(btnRetour);
               document.getElementById("apiGet").appendChild(monTitre);
+              document.getElementById("apiGet").appendChild(monTitreAnglais);
+              document.getElementById("apiGet").appendChild(inclinaison);
+              document.getElementById("apiGet").appendChild(mass);
+              
             });
         }
       }
