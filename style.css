@@ -143,3 +143,18 @@ width: 10%;
     font-family: 'Space Mono', monospace;
     font-size:20px;
 }
+.btnRetour{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: white;
+}
+.btnPlanet{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: white;
+}
+
