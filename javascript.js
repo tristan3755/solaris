@@ -62,10 +62,56 @@ function reqPrincipale() {
                   .then((resp) => resp.json())
                   .then(function (data) {
                     console.log(data);
+                    let divAstre=document.createElement('div')
+                    divAstre.id="divAstre"
+      
                     let monTitre = document.createElement("h1");
                     monTitre.innerHTML = data.name;
                     monTitre.style.color = "white";
-
+      
+                    let monTitreAnglais = document.createElement("p");
+                    monTitreAnglais.innerHTML = "Nom en anglais :" + data.englishName;
+                    monTitreAnglais.style.color = "white";
+      
+                    let inclinaison= document.createElement("p");
+                    inclinaison.innerHTML = "Inclinaison: "+ data.inclination+ "deg";
+                    inclinaison.style.color = "white";
+      
+                    let mass= document.createElement("p");
+                    mass.innerHTML = "Masse:"+data.mass['massValue'] + " " +"x10" +" exposant "+ data.mass['massExponent'] + " " +"Kg"
+                    mass.style.color = "white";
+      
+      
+                    let density= document.createElement("p");
+                    density.innerHTML = "Densité:"+data.density + " " + "g/cm³"
+                    density.style.color = "white";
+      
+                    let gravity= document.createElement("p");
+                    gravity.innerHTML = "Gravité:"+data.gravity + "" + "m/s²"
+                    gravity.style.color = "white";
+                    
+                    let tourneAutour= document.createElement("p");
+                    if(data.aroundPlanet!==null){
+                    tourneAutour.innerHTML ="Gravite autour de l'astre "+ data.aroundPlanet['planet']
+                    tourneAutour.style.color = "white"
+                    }
+                     
+                    let decouverte= document.createElement("p");
+                    if(data.discoveredBy!==""){
+                    decouverte.innerHTML = "Découverte effectuée par: "+ data.discoveredBy
+                    decouverte.style.color = "white";}else {
+                      decouverte.style.opacity = "0"
+                    }
+      
+                    let decouverteDate= document.createElement("p");
+                    if(data.discoveryDate!==""){
+                    decouverteDate.innerHTML = "Découverte effectuée le:" + data.discoveryDate
+                    decouverteDate.style.color = "white";}else{
+                      decouverteDate.style.opacity = "0"
+                    }
+      
+      
+              
                     let btnRetour = document.createElement("p");
                     btnRetour.classList = "btnRetour";
                     btnRetour.innerHTML = "retour";
@@ -76,7 +122,16 @@ function reqPrincipale() {
                     });
 
                     document.getElementById("apiGet").appendChild(btnRetour);
-                    document.getElementById("apiGet").appendChild(monTitre);
+                    document.getElementById("apiGet").appendChild(divAstre);
+                    document.getElementById("divAstre").appendChild(monTitre);
+                    document.getElementById("divAstre").appendChild(monTitreAnglais);
+                    document.getElementById("divAstre").appendChild(inclinaison);
+                    document.getElementById("divAstre").appendChild(mass);
+                    document.getElementById("divAstre").appendChild(density);
+                    document.getElementById("divAstre").appendChild(gravity);
+                    document.getElementById("divAstre").appendChild(tourneAutour);
+                    document.getElementById("divAstre").appendChild(decouverte);
+                    document.getElementById("divAstre").appendChild(decouverteDate);
                   });
               }
 
@@ -131,14 +186,19 @@ function reqPrincipale() {
               tourneAutour.style.color = "white"
               }
                
-              
               let decouverte= document.createElement("p");
-              decouverte.innerHTML = "Découverte effectuée par:"+ data.discoveredBy
-              decouverte.style.color = "white";
+              if(data.discoveredBy!==""){
+              decouverte.innerHTML = "Découverte effectuée par: "+ data.discoveredBy
+              decouverte.style.color = "white";}else {
+                decouverte.style.opacity = "0"
+              }
 
               let decouverteDate= document.createElement("p");
-              decouverteDate.innerHTML = "Découverte effectuée le:" + data.discoveryDate
-              decouverteDate.style.color = "white";
+              if(data.discoveryDate!==""){
+              decouverteDate.innerHTML = "Découverte effectuée le: " + data.discoveryDate
+              decouverteDate.style.color = "white";}else{
+                decouverteDate.style.opacity = "0"
+              }
 
               let btnRetour = document.createElement("p");
               btnRetour.classList = "btnRetour";
@@ -157,8 +217,7 @@ function reqPrincipale() {
               document.getElementById("divAstre").appendChild(mass);
               document.getElementById("divAstre").appendChild(density);
               document.getElementById("divAstre").appendChild(gravity);
-             document.getElementById("divAstre").appendChild(tourneAutour);
-              
+              document.getElementById("divAstre").appendChild(tourneAutour);
               document.getElementById("divAstre").appendChild(decouverte);
               document.getElementById("divAstre").appendChild(decouverteDate);
               
