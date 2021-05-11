@@ -190,3 +190,43 @@ width: 10%;
 .btnPlanet:hover{
     cursor: pointer;
 }
+.recherche{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    bottom: 200px;
+    right: 40px;
+    font-size: 15px;
+    width: 150px;
+    height: 100px;
+    background-color: transparent;
+    background-image: url(./images/Group\ 2.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    color: white;
+    text-transform: uppercase;
+}
+.btnRecherche{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    bottom: 400px;
+    right: 40px;
+    font-size: 15px;
+    width: 150px;
+    height: 150px;
+    color: white;
+    background-image: url(./images/Group\ 2.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+}
