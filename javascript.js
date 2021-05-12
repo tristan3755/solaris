@@ -5,21 +5,32 @@ function reqPrincipale() {
     .then((resp) => resp.json())
     .then(function (data) {
       
+  
+
+      let recherche=document.createElement('input')
+      recherche.type="texte"
+      recherche.placeholder="Recherche"
+      recherche.classList="recherche"
+
+      recherche.addEventListener('click',()=>{
+        recherche.style.width="250px"
+      })
+
       let btnRecherche = document.createElement("p");
       btnRecherche.classList = "btnRecherche";
       btnRecherche.innerHTML = "Rechercher";
 
+     
       btnRecherche.addEventListener("click",()=>{
         getValue()
      
       })
-
+    
       document.getElementById("apiGet").appendChild(btnRecherche);
 
-      let recherche=document.createElement('input')
-      recherche.type="texte"
-      recherche.classList="recherche"
       let valeurInput
+
+
 
       document.getElementById("apiGet").appendChild(recherche);
 
@@ -28,7 +39,7 @@ function reqPrincipale() {
       btnPlanet.innerHTML = "Afficher uniquement les planetes";
 
       document.getElementById("apiGet").appendChild(btnPlanet);
-      
+
       for (let i in data.bodies) {
        
         let maDiv = document.createElement("div");
@@ -148,9 +159,7 @@ function reqPrincipale() {
         
     
        }
-       
-
-      
+        
   /*recherche*/
         btnPlanet.addEventListener("click", () => {
           triPLanete();
@@ -167,7 +176,20 @@ function reqPrincipale() {
         function triPLanete() {
           document.getElementById("apiGet").innerHTML = "";
 
+          let btnRetour = document.createElement("p");
+          btnRetour.classList = "btnRetour";
+          btnRetour.innerHTML = "retour";
+          console.log(btnRetour);
+          btnRetour.addEventListener("click", () => {
+            document.getElementById("apiGet").innerHTML = "";
+            reqPrincipale();
+          });
+
+          document.getElementById("apiGet").appendChild(btnRetour);
+
           for (let i in data.bodies) {
+          
+
             if (data.bodies[i].isPlanet == true) {
               maDiv = document.createElement("div");
               maDiv.classList = "divListe";
@@ -175,15 +197,6 @@ function reqPrincipale() {
               nomAstre.innerHTML = data.bodies[i].id;
 
               maDiv.appendChild(nomAstre);
-
-              let btnRetour = document.createElement("p");
-              btnRetour.classList = "btnRetour";
-              btnRetour.innerHTML = "retour";
-              console.log(btnRetour);
-              btnRetour.addEventListener("click", () => {
-                document.getElementById("apiGet").innerHTML = "";
-                reqPrincipale();
-              });
 
               maDiv.addEventListener("click", () => {
                 reqIdPlanete();
@@ -273,7 +286,7 @@ function reqPrincipale() {
                   });
               }
 
-              document.getElementById("apiGet").appendChild(btnRetour);
+             
               document.getElementById("apiGet").appendChild(maDiv);
             }
           }

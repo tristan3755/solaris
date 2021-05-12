@@ -109,7 +109,6 @@ width: 10%;
     transition: ease-in-out 0.7s;
     z-index: -1;
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-direction: column;
     max-height: 100%;
@@ -166,9 +165,11 @@ width: 10%;
     align-items: center;
     justify-content: center;
     font-family: 'Space Mono', monospace;
+    transition: ease-in-out 0.5s;
 }
 .btnRetour:hover{
     cursor: pointer;
+    transform: scale(1.2);
 }
 .btnPlanet{
     position: fixed;
@@ -179,8 +180,8 @@ width: 10%;
     bottom: 10px;
     right: 40px;
     font-size: 15px;
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 200px;
     color: white;
     background-image: url(./images/Group\ 5.png);
     background-size: contain;
@@ -188,9 +189,11 @@ width: 10%;
     background-position: center;
     text-align: center;
     font-family: 'Space Mono', monospace;
+    transition: ease-in-out 0.5s;
 }
 .btnPlanet:hover{
     cursor: pointer;
+    transform: scale(1.2);
 }
 .recherche{
     position: fixed;
@@ -201,8 +204,9 @@ width: 10%;
     bottom: 400px;
     right: 40px;
     font-size: 15px;
-    width: 150px;
+    width: 100px;
     height: 50px;
+    padding: 0;
     background-color: transparent;
     font-family: 'Space Mono', monospace;
     color: white;
@@ -210,6 +214,7 @@ width: 10%;
     border: 1px #05CBF8 solid;
     border-radius: 55px;
     text-align: center;
+    transition: ease-in-out 0.5s;
 }
 .btnRecherche{
     position: fixed;
@@ -217,7 +222,7 @@ width: 10%;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    bottom: 100px;
+    bottom: 200px;
     right: 40px;
     font-size: 15px;
     padding: 0;
@@ -230,4 +235,9 @@ width: 10%;
     background-position: center;
     text-align: center;
     font-family: 'Space Mono', monospace;
+    transition: ease-in-out 0.5s;
+}
+.btnRecherche:hover{
+    cursor: pointer;
+    transform: scale(1.2);
 }
