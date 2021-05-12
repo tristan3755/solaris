@@ -17,13 +17,15 @@ function reqPrincipale() {
 
         let btnRecherche = document.createElement("p");
         btnRecherche.classList = "btnRecherche";
-        btnRecherche.innerHTML = "Recherchez";
+        btnRecherche.innerHTML = "Rechercher";
 
         /*recherche*/
      
-        let recherche=document.querySelector(".recherche")
-        
+        let recherche=document.createElement('input')
+        recherche.type="texte"
+        recherche.classList="recherche"
         let valeurInput
+
        function getValue(){
          valeurInput=recherche.value
         
