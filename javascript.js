@@ -8,6 +8,7 @@ function reqPrincipale() {
        
         let maDiv = document.createElement("div");
         maDiv.classList = "divListe";
+
         let nomAstre = document.createElement("p");
         nomAstre.innerHTML = data.bodies[i].id;
         let btnPlanet = document.createElement("p");
@@ -20,9 +21,8 @@ function reqPrincipale() {
 
         /*recherche*/
      
-        let recherche=document.createElement('input')
-        recherche.type="text"
-        recherche.classList="recherche"
+        let recherche=document.querySelector(".recherche")
+        
         let valeurInput
        function getValue(){
          valeurInput=recherche.value
