@@ -4,6 +4,31 @@ function reqPrincipale() {
   fetch(url)
     .then((resp) => resp.json())
     .then(function (data) {
+      
+      let btnRecherche = document.createElement("p");
+      btnRecherche.classList = "btnRecherche";
+      btnRecherche.innerHTML = "Rechercher";
+
+      btnRecherche.addEventListener("click",()=>{
+        getValue()
+     
+      })
+
+      document.getElementById("apiGet").appendChild(btnRecherche);
+
+      let recherche=document.createElement('input')
+      recherche.type="texte"
+      recherche.classList="recherche"
+      let valeurInput
+
+      document.getElementById("apiGet").appendChild(recherche);
+
+      let btnPlanet = document.createElement("p");
+      btnPlanet.classList = "btnPlanet";
+      btnPlanet.innerHTML = "Afficher uniquement les planetes";
+
+      document.getElementById("apiGet").appendChild(btnPlanet);
+      
       for (let i in data.bodies) {
        
         let maDiv = document.createElement("div");
@@ -11,20 +36,12 @@ function reqPrincipale() {
 
         let nomAstre = document.createElement("p");
         nomAstre.innerHTML = data.bodies[i].id;
-        let btnPlanet = document.createElement("p");
-        btnPlanet.classList = "btnPlanet";
-        btnPlanet.innerHTML = "Afficher uniquement les planetes";
+      
 
-        let btnRecherche = document.createElement("p");
-        btnRecherche.classList = "btnRecherche";
-        btnRecherche.innerHTML = "Rechercher";
 
         /*recherche*/
-     
-        let recherche=document.createElement('input')
-        recherche.type="texte"
-        recherche.classList="recherche"
-        let valeurInput
+    
+       
 
        function getValue(){
          valeurInput=recherche.value
@@ -133,20 +150,15 @@ function reqPrincipale() {
        }
        
 
-       btnRecherche.addEventListener("click",()=>{
-         getValue()
       
-       })
   /*recherche*/
         btnPlanet.addEventListener("click", () => {
           triPLanete();
         });
 
         maDiv.appendChild(nomAstre);
-        document.getElementById("apiGet").appendChild(btnPlanet);
-        document.getElementById("apiGet").appendChild(btnRecherche);
-        document.getElementById("apiGet").appendChild(recherche);
-        document.getElementById("apiGet").appendChild(maDiv);
+        
+       document.getElementById("apiGet").appendChild(maDiv);
 
         maDiv.addEventListener("click", () => {
           reqId();
