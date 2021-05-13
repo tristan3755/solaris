@@ -149,7 +149,7 @@ width: 10%;
     text-transform: uppercase;
 }
 .btnRetour{
-    position: absolute;
+    position: fixed;
     bottom: 40px;
     right: 40px;
     font-size: 15px;
@@ -201,7 +201,7 @@ width: 10%;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    bottom: 400px;
+    bottom: 350px;
     right: 40px;
     font-size: 15px;
     width: 100px;
@@ -240,4 +240,41 @@ width: 10%;
 .btnRecherche:hover{
     cursor: pointer;
     transform: scale(1.2);
+}
+#divAstre{
+   max-width: 100%;
+   margin-left:10px;
+}
+#divAstre>*{
+    font-size: 3vmin;
+    font-family: 'Space Mono', monospace;
+ }
+@media(max-width:800px){
+    #apiGet{
+       width: 50%;
+    }
+    .btnRecherche{
+        width: 120px;
+        height: 120px;
+        right: 0;
+    }
+    .btnPlanet{
+        width: 160px;
+        height: 100px;
+        font-size: 10px;
+        right: 0;
+    }
+    .recherche{
+        right: 0;
+        max-width: 50%;
+    }
+    .divListe>*{
+        
+        font-size:13px;
+       
+    }
+    #divAstre>*{
+        font-size: 5vmin;
+     }
+  
 }

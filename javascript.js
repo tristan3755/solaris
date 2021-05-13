@@ -4,33 +4,26 @@ function reqPrincipale() {
   fetch(url)
     .then((resp) => resp.json())
     .then(function (data) {
-      
-  
+      let recherche = document.createElement("input");
+      recherche.type = "texte";
+      recherche.placeholder = "Recherche";
+      recherche.classList = "recherche";
 
-      let recherche=document.createElement('input')
-      recherche.type="texte"
-      recherche.placeholder="Recherche"
-      recherche.classList="recherche"
-
-      recherche.addEventListener('click',()=>{
-        recherche.style.width="250px"
-      })
+      recherche.addEventListener("click", () => {
+        recherche.style.width = "250px";
+      });
 
       let btnRecherche = document.createElement("p");
       btnRecherche.classList = "btnRecherche";
       btnRecherche.innerHTML = "Rechercher";
 
-     
-      btnRecherche.addEventListener("click",()=>{
-        getValue()
-     
-      })
-    
+      btnRecherche.addEventListener("click", () => {
+        getValue();
+      });
+
       document.getElementById("apiGet").appendChild(btnRecherche);
 
-      let valeurInput
-
-
+      let valeurInput;
 
       document.getElementById("apiGet").appendChild(recherche);
 
@@ -41,133 +34,136 @@ function reqPrincipale() {
       document.getElementById("apiGet").appendChild(btnPlanet);
 
       for (let i in data.bodies) {
-       
         let maDiv = document.createElement("div");
         maDiv.classList = "divListe";
 
         let nomAstre = document.createElement("p");
         nomAstre.innerHTML = data.bodies[i].id;
-      
-
 
         /*recherche*/
-    
-       
 
-       function getValue(){
-         valeurInput=recherche.value
-        
+        function getValue() {
+          valeurInput = recherche.value;
+
           let url4 =
-          "https://api.le-systeme-solaire.net/rest/bodies/{" +
-          valeurInput +
-          "}";
-        console.log(url4);
-        document.getElementById("apiGet").innerHTML = "";
-        fetch(url4)
-          .then((resp) => resp.json())
-          .then(function (data) {
-            console.log(data);
-            let divAstre=document.createElement('div')
-            divAstre.id="divAstre"
+            "https://api.le-systeme-solaire.net/rest/bodies/{" +
+            valeurInput +
+            "}";
+          console.log(url4);
+          document.getElementById("apiGet").innerHTML = "";
+          fetch(url4)
+            .then((resp) => resp.json())
+            .then(function (data) {
+              console.log(data);
+              let divAstre = document.createElement("div");
+              divAstre.id = "divAstre";
 
-            let monTitre = document.createElement("h1");
-            monTitre.innerHTML = data.name;
-            monTitre.style.color = "white";
+              let monTitre = document.createElement("h1");
+              monTitre.innerHTML = data.name;
+              monTitre.style.color = "white";
 
-            let monTitreAnglais = document.createElement("p");
-            monTitreAnglais.innerHTML = "Nom en anglais :" + data.englishName;
-            monTitreAnglais.style.color = "white";
+              let monTitreAnglais = document.createElement("p");
+              monTitreAnglais.innerHTML = "Nom en anglais :" + data.englishName;
+              monTitreAnglais.style.color = "white";
 
-            let inclinaison= document.createElement("p");
-            inclinaison.innerHTML = "Inclinaison: "+ data.inclination+ "deg";
-            inclinaison.style.color = "white";
+              let inclinaison = document.createElement("p");
+              inclinaison.innerHTML =
+                "Inclinaison: " + data.inclination + "deg";
+              inclinaison.style.color = "white";
 
-            let mass= document.createElement("p");
-            mass.innerHTML = "Masse:"+data.mass['massValue'] + " " +"x10" +" exposant "+ data.mass['massExponent'] + " " +"Kg"
-            mass.style.color = "white";
+              let mass = document.createElement("p");
+              mass.innerHTML =
+                "Masse:" +
+                data.mass["massValue"] +
+                " " +
+                "x10" +
+                " exposant " +
+                data.mass["massExponent"] +
+                " " +
+                "Kg";
+              mass.style.color = "white";
 
+              let density = document.createElement("p");
+              density.innerHTML = "Densité:" + data.density + " " + "g/cm³";
+              density.style.color = "white";
 
-            let density= document.createElement("p");
-            density.innerHTML = "Densité:"+data.density + " " + "g/cm³"
-            density.style.color = "white";
+              let gravity = document.createElement("p");
+              gravity.innerHTML = "Gravité:" + data.gravity + "" + "m/s²";
+              gravity.style.color = "white";
 
-            let gravity= document.createElement("p");
-            gravity.innerHTML = "Gravité:"+data.gravity + "" + "m/s²"
-            gravity.style.color = "white";
-            
-            let tourneAutour= document.createElement("p");
-            if(data.aroundPlanet!==null){
-            tourneAutour.innerHTML ="Gravite autour de l'astre "+ data.aroundPlanet['planet']
-            tourneAutour.style.color = "white"
-            }
-             
-            let decouverte= document.createElement("p");
-            if(data.discoveredBy!==""){
-            decouverte.innerHTML = "Découverte effectuée par: "+ data.discoveredBy
-            decouverte.style.color = "white";}else {
-              decouverte.style.opacity = "0"
-            }
+              let tourneAutour = document.createElement("p");
+              if (data.aroundPlanet !== null) {
+                tourneAutour.innerHTML =
+                  "Gravite autour de l'astre " + data.aroundPlanet["planet"];
+                tourneAutour.style.color = "white";
+              }
 
-            let decouverteDate= document.createElement("p");
-            if(data.discoveryDate!==""){
-            decouverteDate.innerHTML = "Découverte effectuée le:" + data.discoveryDate
-            decouverteDate.style.color = "white";}else{
-              decouverteDate.style.opacity = "0"
-            }
+              let decouverte = document.createElement("p");
+              if (data.discoveredBy !== "") {
+                decouverte.innerHTML =
+                  "Découverte effectuée par: " + data.discoveredBy;
+                decouverte.style.color = "white";
+              } else {
+                decouverte.style.opacity = "0";
+              }
 
+              let decouverteDate = document.createElement("p");
+              if (data.discoveryDate !== "") {
+                decouverteDate.innerHTML =
+                  "Découverte effectuée le:" + data.discoveryDate;
+                decouverteDate.style.color = "white";
+              } else {
+                decouverteDate.style.opacity = "0";
+              }
 
-      
-            let btnRetour = document.createElement("p");
-            btnRetour.classList = "btnRetour";
-            btnRetour.innerHTML = "retour";
-            console.log(btnRetour);
-            btnRetour.addEventListener("click", () => {
-              document.getElementById("apiGet").innerHTML = "";
-              reqPrincipale()
+              let btnRetour = document.createElement("p");
+              btnRetour.classList = "btnRetour";
+              btnRetour.innerHTML = "retour";
+              console.log(btnRetour);
+              btnRetour.addEventListener("click", () => {
+                document.getElementById("apiGet").innerHTML = "";
+                reqPrincipale();
+              });
+
+              document.getElementById("apiGet").appendChild(btnRetour);
+              document.getElementById("apiGet").appendChild(divAstre);
+              document.getElementById("divAstre").appendChild(monTitre);
+              document.getElementById("divAstre").appendChild(monTitreAnglais);
+              document.getElementById("divAstre").appendChild(inclinaison);
+              document.getElementById("divAstre").appendChild(mass);
+              document.getElementById("divAstre").appendChild(density);
+              document.getElementById("divAstre").appendChild(gravity);
+              document.getElementById("divAstre").appendChild(tourneAutour);
+              document.getElementById("divAstre").appendChild(decouverte);
+              document.getElementById("divAstre").appendChild(decouverteDate);
+            })
+            .catch(function (error) {
+              let msgError = document.createElement("p");
+              msgError.innerHTML = "Nous ne trouvous pas votre astre désolé.";
+              msgError.style.color = "white";
+              document.getElementById("apiGet").appendChild(msgError);
+
+              let btnRetour = document.createElement("p");
+              btnRetour.classList = "btnRetour";
+              btnRetour.innerHTML = "retour";
+              console.log(btnRetour);
+              btnRetour.addEventListener("click", () => {
+                document.getElementById("apiGet").innerHTML = "";
+                reqPrincipale();
+              });
+
+              document.getElementById("apiGet").appendChild(btnRetour);
             });
+        }
 
-            document.getElementById("apiGet").appendChild(btnRetour);
-            document.getElementById("apiGet").appendChild(divAstre);
-            document.getElementById("divAstre").appendChild(monTitre);
-            document.getElementById("divAstre").appendChild(monTitreAnglais);
-            document.getElementById("divAstre").appendChild(inclinaison);
-            document.getElementById("divAstre").appendChild(mass);
-            document.getElementById("divAstre").appendChild(density);
-            document.getElementById("divAstre").appendChild(gravity);
-            document.getElementById("divAstre").appendChild(tourneAutour);
-            document.getElementById("divAstre").appendChild(decouverte);
-            document.getElementById("divAstre").appendChild(decouverteDate);
-          })
-          .catch(function (error) {
-            let msgError=document.createElement('p')
-            msgError.innerHTML='t\'es mauvais jack'
-            msgError.style.color="white"
-            document.getElementById("apiGet").appendChild(msgError);
-
-            let btnRetour = document.createElement("p");
-            btnRetour.classList = "btnRetour";
-            btnRetour.innerHTML = "retour";
-            console.log(btnRetour);
-            btnRetour.addEventListener("click", () => {
-              document.getElementById("apiGet").innerHTML = "";
-              reqPrincipale()
-            });
-
-            document.getElementById("apiGet").appendChild(btnRetour);
-
-          });
-        
-    
-       }
-        
-  /*recherche*/
+        /*recherche*/
         btnPlanet.addEventListener("click", () => {
           triPLanete();
         });
 
         maDiv.appendChild(nomAstre);
-        
-       document.getElementById("apiGet").appendChild(maDiv);
+
+        document.getElementById("apiGet").appendChild(maDiv);
 
         maDiv.addEventListener("click", () => {
           reqId();
@@ -188,8 +184,6 @@ function reqPrincipale() {
           document.getElementById("apiGet").appendChild(btnRetour);
 
           for (let i in data.bodies) {
-          
-
             if (data.bodies[i].isPlanet == true) {
               maDiv = document.createElement("div");
               maDiv.classList = "divListe";
@@ -213,56 +207,70 @@ function reqPrincipale() {
                   .then((resp) => resp.json())
                   .then(function (data) {
                     console.log(data);
-                    let divAstre=document.createElement('div')
-                    divAstre.id="divAstre"
-      
+                    let divAstre = document.createElement("div");
+                    divAstre.id = "divAstre";
+
                     let monTitre = document.createElement("h1");
                     monTitre.innerHTML = data.name;
                     monTitre.style.color = "white";
-      
+
                     let monTitreAnglais = document.createElement("p");
-                    monTitreAnglais.innerHTML = "Nom en anglais :" + data.englishName;
+                    monTitreAnglais.innerHTML =
+                      "Nom en anglais :" + data.englishName;
                     monTitreAnglais.style.color = "white";
-      
-                    let inclinaison= document.createElement("p");
-                    inclinaison.innerHTML = "Inclinaison: "+ data.inclination+ "deg";
+
+                    let inclinaison = document.createElement("p");
+                    inclinaison.innerHTML =
+                      "Inclinaison: " + data.inclination + "deg";
                     inclinaison.style.color = "white";
-      
-                    let mass= document.createElement("p");
-                    mass.innerHTML = "Masse:"+data.mass['massValue'] + " " +"x10" +" exposant "+ data.mass['massExponent'] + " " +"Kg"
+
+                    let mass = document.createElement("p");
+                    mass.innerHTML =
+                      "Masse:" +
+                      data.mass["massValue"] +
+                      " " +
+                      "x10" +
+                      " exposant " +
+                      data.mass["massExponent"] +
+                      " " +
+                      "Kg";
                     mass.style.color = "white";
-      
-      
-                    let density= document.createElement("p");
-                    density.innerHTML = "Densité:"+data.density + " " + "g/cm³"
+
+                    let density = document.createElement("p");
+                    density.innerHTML =
+                      "Densité:" + data.density + " " + "g/cm³";
                     density.style.color = "white";
-      
-                    let gravity= document.createElement("p");
-                    gravity.innerHTML = "Gravité:"+data.gravity + "" + "m/s²"
+
+                    let gravity = document.createElement("p");
+                    gravity.innerHTML = "Gravité:" + data.gravity + "" + "m/s²";
                     gravity.style.color = "white";
-                    
-                    let tourneAutour= document.createElement("p");
-                    if(data.aroundPlanet!==null){
-                    tourneAutour.innerHTML ="Gravite autour de l'astre "+ data.aroundPlanet['planet']
-                    tourneAutour.style.color = "white"
+
+                    let tourneAutour = document.createElement("p");
+                    if (data.aroundPlanet !== null) {
+                      tourneAutour.innerHTML =
+                        "Gravite autour de l'astre " +
+                        data.aroundPlanet["planet"];
+                      tourneAutour.style.color = "white";
                     }
-                     
-                    let decouverte= document.createElement("p");
-                    if(data.discoveredBy!==""){
-                    decouverte.innerHTML = "Découverte effectuée par: "+ data.discoveredBy
-                    decouverte.style.color = "white";}else {
-                      decouverte.style.opacity = "0"
+
+                    let decouverte = document.createElement("p");
+                    if (data.discoveredBy !== "") {
+                      decouverte.innerHTML =
+                        "Découverte effectuée par: " + data.discoveredBy;
+                      decouverte.style.color = "white";
+                    } else {
+                      decouverte.style.opacity = "0";
                     }
-      
-                    let decouverteDate= document.createElement("p");
-                    if(data.discoveryDate!==""){
-                    decouverteDate.innerHTML = "Découverte effectuée le:" + data.discoveryDate
-                    decouverteDate.style.color = "white";}else{
-                      decouverteDate.style.opacity = "0"
+
+                    let decouverteDate = document.createElement("p");
+                    if (data.discoveryDate !== "") {
+                      decouverteDate.innerHTML =
+                        "Découverte effectuée le:" + data.discoveryDate;
+                      decouverteDate.style.color = "white";
+                    } else {
+                      decouverteDate.style.opacity = "0";
                     }
-      
-      
-              
+
                     let btnRetour = document.createElement("p");
                     btnRetour.classList = "btnRetour";
                     btnRetour.innerHTML = "retour";
@@ -275,18 +283,25 @@ function reqPrincipale() {
                     document.getElementById("apiGet").appendChild(btnRetour);
                     document.getElementById("apiGet").appendChild(divAstre);
                     document.getElementById("divAstre").appendChild(monTitre);
-                    document.getElementById("divAstre").appendChild(monTitreAnglais);
-                    document.getElementById("divAstre").appendChild(inclinaison);
+                    document
+                      .getElementById("divAstre")
+                      .appendChild(monTitreAnglais);
+                    document
+                      .getElementById("divAstre")
+                      .appendChild(inclinaison);
                     document.getElementById("divAstre").appendChild(mass);
                     document.getElementById("divAstre").appendChild(density);
                     document.getElementById("divAstre").appendChild(gravity);
-                    document.getElementById("divAstre").appendChild(tourneAutour);
+                    document
+                      .getElementById("divAstre")
+                      .appendChild(tourneAutour);
                     document.getElementById("divAstre").appendChild(decouverte);
-                    document.getElementById("divAstre").appendChild(decouverteDate);
+                    document
+                      .getElementById("divAstre")
+                      .appendChild(decouverteDate);
                   });
               }
 
-             
               document.getElementById("apiGet").appendChild(maDiv);
             }
           }
@@ -303,8 +318,8 @@ function reqPrincipale() {
             .then((resp) => resp.json())
             .then(function (data) {
               console.log(data);
-              let divAstre=document.createElement('div')
-              divAstre.id="divAstre"
+              let divAstre = document.createElement("div");
+              divAstre.id = "divAstre";
 
               let monTitre = document.createElement("h1");
               monTitre.innerHTML = data.name;
@@ -314,41 +329,54 @@ function reqPrincipale() {
               monTitreAnglais.innerHTML = "Nom en anglais :" + data.englishName;
               monTitreAnglais.style.color = "white";
 
-              let inclinaison= document.createElement("p");
-              inclinaison.innerHTML = "Inclinaison: "+ data.inclination+ "deg";
+              let inclinaison = document.createElement("p");
+              inclinaison.innerHTML =
+                "Inclinaison: " + data.inclination + "deg";
               inclinaison.style.color = "white";
 
-              let mass= document.createElement("p");
-              mass.innerHTML = "Masse:"+data.mass['massValue'] + " " +"x10" +" exposant "+ data.mass['massExponent'] + " " +"Kg"
+              let mass = document.createElement("p");
+              mass.innerHTML =
+                "Masse:" +
+                data.mass["massValue"] +
+                " " +
+                "x10" +
+                " exposant " +
+                data.mass["massExponent"] +
+                " " +
+                "Kg";
               mass.style.color = "white";
 
-
-              let density= document.createElement("p");
-              density.innerHTML = "Densité:"+data.density + " " + "g/cm³"
+              let density = document.createElement("p");
+              density.innerHTML = "Densité:" + data.density + " " + "g/cm³";
               density.style.color = "white";
 
-              let gravity= document.createElement("p");
-              gravity.innerHTML = "Gravité:"+data.gravity + "" + "m/s²"
+              let gravity = document.createElement("p");
+              gravity.innerHTML = "Gravité:" + data.gravity + "" + "m/s²";
               gravity.style.color = "white";
-              
-              let tourneAutour= document.createElement("p");
-              if(data.aroundPlanet!==null){
-              tourneAutour.innerHTML ="Gravite autour de l'astre "+ data.aroundPlanet['planet']
-              tourneAutour.style.color = "white"
-              }
-               
-              let decouverte= document.createElement("p");
-              if(data.discoveredBy!==""){
-              decouverte.innerHTML = "Découverte effectuée par: "+ data.discoveredBy
-              decouverte.style.color = "white";}else {
-                decouverte.style.opacity = "0"
+
+              let tourneAutour = document.createElement("p");
+              if (data.aroundPlanet !== null) {
+                tourneAutour.innerHTML =
+                  "Gravite autour de l'astre " + data.aroundPlanet["planet"];
+                tourneAutour.style.color = "white";
               }
 
-              let decouverteDate= document.createElement("p");
-              if(data.discoveryDate!==""){
-              decouverteDate.innerHTML = "Découverte effectuée le: " + data.discoveryDate
-              decouverteDate.style.color = "white";}else{
-                decouverteDate.style.opacity = "0"
+              let decouverte = document.createElement("p");
+              if (data.discoveredBy !== "") {
+                decouverte.innerHTML =
+                  "Découverte effectuée par: " + data.discoveredBy;
+                decouverte.style.color = "white";
+              } else {
+                decouverte.style.opacity = "0";
+              }
+
+              let decouverteDate = document.createElement("p");
+              if (data.discoveryDate !== "") {
+                decouverteDate.innerHTML =
+                  "Découverte effectuée le: " + data.discoveryDate;
+                decouverteDate.style.color = "white";
+              } else {
+                decouverteDate.style.opacity = "0";
               }
 
               let btnRetour = document.createElement("p");
@@ -371,7 +399,6 @@ function reqPrincipale() {
               document.getElementById("divAstre").appendChild(tourneAutour);
               document.getElementById("divAstre").appendChild(decouverte);
               document.getElementById("divAstre").appendChild(decouverteDate);
-              
             });
         }
       }
